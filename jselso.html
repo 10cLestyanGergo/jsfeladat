@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .margin{
+            margin-top:100px;
+        }
+    </style>
+    <script>
+        function szamol(){
+            let szam1=parseFloat(document.getElementById("elso").value);
+            let szam2=parseFloat(document.getElementById("masodik").value);
+            let szam3=parseFloat(document.getElementById("harmadik").value);
+            if(2*szam1+2*szam2+2*szam3>0){
+                document.querySelector(".eredmeny").innerText=2*szam1*szam2+2*szam2*szam3+szam1*2*szam3+" egység a felülete"
+                document.querySelector(".eredmeny2").innerText=szam1*szam2*szam3+" egység az űrtartalma"
+            }
+            else{
+                document.querySelector(".eredmeny").innerText="nem jók a számok"
+                document.querySelector(".eredmeny2").innerText="nem jók a számok"
+            }
+        }
+        function ertekel(){
+            let szazalek=parseInt(document.getElementById("ertek").value);
+            if(szazalek>100 ||szazalek<0){
+                document.querySelector(".eredmeny3").innerText="nem jó érték";
+            }
+            else if(szazalek<100){
+                if(szazalek<85){
+                    if(szazalek<70){
+                        if(szazalek<50){
+                            if(szazalek<25){
+                                document.querySelector(".eredmeny3").innerText="F";
+                            }
+                            else{
+                                document.querySelector(".eredmeny3").innerText="D";
+                            }
+                        }
+                        else{
+                            document.querySelector(".eredmeny3").innerText="C";
+                        }
+                    }
+                    else{
+                        document.querySelector(".eredmeny3").innerText="B";
+                    }
+                }
+                else{
+                    document.querySelector(".eredmeny3").innerText="A";
+                }
+            }
+        }
+        function bmi(){
+            let suly=parseFloat(document.getElementById("suly").value);
+            let magassag=parseFloat(document.getElementById("magassag").value);
+            let a=suly/magassag**2;
+            if(a<0){
+                document.querySelector(".bmieredmeny").innerText="nem jó bemeneti érték"
+            }
+            else{
+                document.querySelector(".bmieredmeny").innerText=a;
+            }
+        }
+        let ora;
+        function init(){
+            ora=document.querySelectorAll('td');
+            console.log(ora);
+            setInterval(pontosIdo,1000);
+            let x=10;
+        for(x;x<=30;x++){
+            document.querySelector(".oszthatosag").innerText+=x+":";
+
+            for(let y=2;y<=x;y++){
+                if(x%y==0){
+                    document.querySelector(".oszthatosag").innerText+="\t"+y+" \t";
+                }
+            }
+            document.querySelector(".oszthatosag").innerText+=" \n";
+            }
+        }
+        
+        function pontosIdo(){
+            let d = new Date();
+            ora[0].innerHTML=23-d.getHours()+":";
+            ora[1].innerHTML=59-d.getMinutes()+":";
+            ora[2].innerHTML=60-d.getSeconds();
+        }
+        function szokoev(){
+            let ev=parseInt(document.getElementById("evszam").value);
+            if(ev%4==0){
+                if(ev%400==0){
+                    document.querySelector(".szokoeredmeny").innerText=ev+" év az szökőév";
+                }
+                else if(ev%100==0&&ev%400!=0){
+                    document.querySelector(".szokoeredmeny").innerText=ev+" év nem szökőév";
+                }
+                else{
+                
+                    document.querySelector(".szokoeredmeny").innerText=ev+" év az szökőév";
+                }
+                
+            }
+            else{
+                document.querySelector(".szokoeredmeny").innerText=ev+" év nem szökőév";
+            }
+        }
+        function kopapir(){
+            let elso=parseInt(document.getElementById("elsoember").value);
+            let masodik=parseInt(document.getElementById("masodikember").value);
+            if(1>elso||masodik<1||elso>3||masodik>3||elso%1!=0||masodik%1!=0){
+                document.querySelector(".kopapireredmeny").innerText="Rossz bemenet,adjon meg másikat";
+            }
+            else{
+                if(elso==1){
+                    if(masodik==1){
+                        document.querySelector(".kopapireredmeny").innerText="Döntetlen";
+                    }
+                    else if(masodik==2){
+                        document.querySelector(".kopapireredmeny").innerText="A második játékos nyert";
+                    }
+                    else if(masodik==3){
+                        document.querySelector(".kopapireredmeny").innerText="Az első játékos nyert";
+                    }
+                }
+                else if(elso==2){
+                    if(masodik==1){
+                        document.querySelector(".kopapireredmeny").innerText="Az első játékos nyert";
+                    }
+                    else if(masodik==2){
+                        document.querySelector(".kopapireredmeny").innerText="Döntetlen";
+                    }
+                    else if(masodik==3){
+                        document.querySelector(".kopapireredmeny").innerText="A második játékos nyert";
+                    }
+                }
+                else if(elso==3){
+                    if(masodik==1){
+                        document.querySelector(".kopapireredmeny").innerText="A második játékos nyert";
+                    }
+                    else if(masodik==2){
+                        document.querySelector(".kopapireredmeny").innerText="Az első játékos nyert";
+                    }
+                    else if(masodik==3){
+                        document.querySelector(".kopapireredmeny").innerText="Döntetlen";
+                    }
+                }
+            }
+        }
+        function alma(){
+            let szoveg=document.getElementById("szoveg").value;
+            for(let i =0;i<szoveg.length;i++){
+                document.querySelector(".almaeredmeny").innerText+=szoveg[i]+"\n"
+            }
+        }
+        function faktorial(){
+            let szam=parseInt(document.getElementById("faktorialszam").value);
+            let osszeg=1;
+            for(let i=szam;i>0;i--){
+                osszeg=osszeg*i;
+            }
+            document.querySelector(".faktorialiseredmeny").innerText=osszeg
+        }
+        function betu(){
+            let szo=document.getElementById("betu").value;
+            let i=0;
+            while(szo[i].toLowerCase()!=char.toUpperCase()){
+                document.querySelector(".betueredmeny").innerText+=szo[i]+ " "
+            }
+        }
+        function fizz(){
+            let szam=document.getElementById("fizz").value;
+            for(let i=1;i<=szam;i++){
+
+            
+            if(i%3==0){
+                if(i%5==0){
+                    document.querySelector(".fizzeredmeny").innerText+="\tfizzbuzz\t";
+                }
+                else{
+                    document.querySelector(".fizzeredmeny").innerText+="\tfizz\t";
+                }
+            }
+            else if(i%5==0){
+                document.querySelector(".fizzeredmeny").innerText+="\t buzz \t";
+            }
+            else{
+                document.querySelector(".fizzeredmeny").innerText+="\t"+i+"\t";
+            }
+            document.querySelector(".fizzeredmeny").innerHTML+="<p>\t</p>"
+        }
+        }
+    </script>
+</head>
+<body onload="init()">
+    <input type="number" id="elso">
+    <input type="number" id="masodik">
+    <input type="number" id="harmadik">
+    <button type="button" name="gomb" id="gomb" title="számol"
+    onclick="szamol()">számol</button>
+    <p class="eredmeny"></p>
+    <p class="eredmeny2"></p>
+    <div class="margin"></div>
+    <input type="number" title="értékelés" id="ertek">
+    <button type="button" name="gomb" title="értékelés" id="ertekel" onclick="ertekel()">értékelés</button>
+    <p class="eredmeny3"></p>
+    <div class="margin"></div>
+    <input type="number" id="suly">kg
+    <input type="number" id="magassag" >m
+    <button type="button" title="kiszamol" onclick="bmi()">Kiszámol</button>
+    <p class="bmieredmeny"></p>
+    <div class="margin"></div>
+    <table>
+        <tr>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+</table>
+    <div class="margin"></div>
+    <input type="number"id="evszam">
+    <button type="button" onclick="szokoev()">vizsgál</button>
+    <p class="szokoeredmeny"></p>
+    <div class="margin"></div>
+    <p>első
+    <input type="password" id="elsoember"></p>
+    <p>második <input type="password" id="masodikember"></p> <button onclick="kopapir()">eredmény</button>
+    <p class="kopapireredmeny"></p>
+    <div class="margin"></div>
+    <p><input type="text"  id="szoveg"> <button onclick="alma()">Kiír</button></p>
+    
+    <p class="almaeredmeny
+"></p>
+    <div class="margin"></div>
+    <p><input type="number" id="faktorialszam"><button type="button" onclick="faktorial()">faktoriális</button></p>
+    <p class="faktorialiseredmeny"></p>
+    <div class="margin"></div>
+    <p><input type="text" id="betu"><button onclick="betu()">kiírat</button></p>
+    <p class="betueredmeny"></p>
+    <div class="margin"></div>
+    <p class="oszthatosag"></p>
+    <div class="margin"></div>
+    <p><input type="number" id="fizz"><button onclick="fizz()">fizzbuzz</button></p>
+    <p class="fizzeredmeny"></p>
+</body>
+</html>
